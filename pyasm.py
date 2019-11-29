@@ -32,17 +32,23 @@ class glog():
         if s in self.strList:
             return s
         if '[' not in s:
+            if s not in self.inteList:
+                return s
             return '[%s]'%s
         ol = s.split('[')
         inte = ol[1].replace(']','')
-        self.add('mov r15,[%s]'%inte)
-        return '[%s+8*r15]'%ol[0]
+        if inte in self.inteList:
+            self.add('mov r10,[%s]'%inte)
+        else:
+            self.add('mov r10,%s'%inte)
+        return '[%s+8*r10]'%ol[0]
 log = glog()
 
 def dealArray(one): 
     one = one.replace(',',' ')
     one = one.replace('|',' ')
     ol = one.split()    
+    log.arrayList.append(ol[1])
     if len(ol) == 3:
         log.bAdd(ol[1]+':')
         log.bAdd('resq '+ol[2])
@@ -56,6 +62,7 @@ def   dealInte(one):
     one = one.replace(',',' ')
     one = one.replace('|',' ')
     ol = one.split()    
+    log.inteList.append(ol[1])
     if len(ol) == 2:
         log.bAdd(ol[1]+':')
         log.bAdd('resq 1')
@@ -88,6 +95,8 @@ def dealString(one):
 
 def dealMov(one):
     ol = one.split()
+    log.add('mov r9,'+log.getToken(ol[2]))
+    log.add('mov %s,r9'%log.getToken(ol[1]))
 
 log.add(' main:')
 log.add('push r15')

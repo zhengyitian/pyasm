@@ -5,5 +5,6 @@ array hehe 100
 string ss1 "%d",10,0
 inte a 1
 inte b 
-mov hehe 10
-printf ss1,a
+mov hehe[5] 4
+add hehe[6] hehe[5] b
+printf ss1,hehe[5]
