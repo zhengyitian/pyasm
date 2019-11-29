@@ -1,0 +1,9 @@
+array daMx 8 |-2,-1,1,2,2,1,-1,-2
+array hehe 100
+
+#can not has space
+string ss1 "%d",10,0
+inte a 1
+inte b 
+mov hehe 10
+printf ss1,a
