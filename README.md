@@ -11,7 +11,7 @@ can the point get back to the original point reaching every other point once and
 
 tiao.c is translated by hand from tiao.py, and tiao.pa is translated by hand from tiao.c
 
-example.pa is reminder of the grammer of .pa files
+example.pa is a reminder of the grammer of .pa files
 
 i wrote this to understand how a program works in the lower level and how compilers(like gcc) works
 
