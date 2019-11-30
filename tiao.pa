@@ -1,10 +1,26 @@
-array daMx 8 |-2,-1,1,2,2,1,-1,-2
-array hehe 100
+array li 100
+string ss1 "%ld",10,0
+string ss2 "str%ld",10,0
 
-#can not has space
-string ss1 "%d",10,0
-inte a 1
-inte b 
-mov hehe[5] 4
-add hehe[6] hehe[5] b
-printf ss1,hehe[5]
+
+int le 50
+inte co -1
+inte tempa
+inte tempb
+def main
+    mov li[0] 1
+    mov li[1] 1
+    printf ss2 li[0]
+    while co l 50
+        add co co 1
+        add tempa co 1
+        add tempb co 2
+        add li[tempb] li[tempa] li[co]
+    whileend
+    mov co -1
+    while co l 50
+        add co co 1
+        printf ss1 li[co]
+    whileend
+        
+defend

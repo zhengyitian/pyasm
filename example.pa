@@ -1,0 +1,41 @@
+array daMx 8 |-2,-1,1,2,2,1,-1,-2
+array hehe 100
+
+#can not has space
+string ss1 "%d",10,0
+string ss2 "str%d",10,0
+inte a 1
+inte b 
+
+def test1
+    mov a 100
+    printf ss1 11
+    return
+defend
+
+inte sign 10
+def main
+    call test1
+    div a b 1000000 100
+    printf ss1,a
+
+    if sign g 1
+        sub sign sign 1
+    ifend
+    else
+        add sign sign 1
+    elseend
+    printf ss1 sign
+
+    
+    while sign ne 0
+        sub sign sign 1       
+        if sign e 2
+            break
+        ifend 
+        if sign e 5            
+            continue
+        ifend
+        printf ss2 sign
+    whileend
+defend

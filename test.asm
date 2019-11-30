@@ -4,9 +4,19 @@
     
     main:
     push r15
-    mov rcx,[b]
-    mov rdx,hehe
-mov rax,[hehe+]
+mov rdi,for1
+mov rsi,10
+mov rax ,0
+call printf
+mov rdx,-1
+mov rax,-1000
+mov rcx,3
+idiv rcx
+mov rsi,rdx
+mov rdi,for1
+mov rax ,0
+call printf
+
    pop r15
     ret 
     section .data
