@@ -7,7 +7,7 @@ tiao.py ,tiao.c, tiao.pa all solve the same problem:
 
 moving a point on a 6*5 chess board in a L shape(one direction two steps, the other direction one step)
 
-can the point get to the original point reaching every other point once and only once?
+can the point get back to the original point reaching every other point once and only once?
 
 tiao.c is translated by hand from tiao.py, and tiao.pa is translated by hand from tiao.c
 
