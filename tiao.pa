@@ -1,26 +1,163 @@
-array li 100
-string ss1 "%ld",10,0
-string ss2 "str%ld",10,0
 
+inte w1 5
+inte w2 4
+       
+array daMx 8 -2,-1,1,2,2,1,-1,-2
+array daMy 8 1,2,2,1,-1,-2,-2,-1
+inte wR1
+inte wR2
+inte wraOne_p1
+inte wraOne_p2
+inte wraOne_a
+inte wraOne_b
+inte wraOne_ret
 
-int le 50
-inte co -1
-inte tempa
-inte tempb
+def wraOne
+    add wraOne_a wraOne_p1 wraOne_a
+    add wraOne_b wraOne_b wraOne_p2
+    mov wraOne_ret -1
+    if wraOne_a l 0
+        return
+    ifend
+    if wraOne_b l 0
+        return
+    ifend
+    if wraOne_a g w1
+        return
+    ifend
+    if wraOne_b g w2
+        return
+    ifend
+    mov wR1 wraOne_a
+    mov wR2 wraOne_b
+    mov wraOne_ret 1
+    return 
+defend
+
+inte getNextPos_a
+inte getNextPos_b
+inte getNextPos_n
+inte getNextPos_ret
+def getNextPos
+    mov wraOne_p1 getNextPos_a
+    mov wraOne_p2 getNextPos_b
+    sub getNextPos_n getNextPos_n 1
+    mov wraOne_a daMx[getNextPos_n]
+    mov wraOne_b daMy[getNextPos_n]
+    call wraOne
+    mov getNextPos_ret wraOne_ret
+defend
+
+inte curPosx  0
+inte curPosy  0
+array posListx 1000
+array posListy 1000 
+array tryTimeList 1000
+inte listL  0
+inte tryTime  1
+inte co  0
+
+inte foundPos_a
+inte foundPos_b
+inte foundPos_ret
+
+def foundPos
+    inte foundPos_loop 0
+    mov foundPos_loop 0
+    while foundPos_loop l listL
+        if posListx[foundPos_loop] e foundPos_a
+            if posListy[foundPos_loop] e foundPos_b
+                mov  foundPos_ret 1
+                return
+            ifend
+        ifend
+        add foundPos_loop foundPos_loop 1
+    whileend
+    mov  foundPos_ret -1
+    return
+defend
+    
 def main
-    mov li[0] 1
-    mov li[1] 1
-    printf ss2 li[0]
-    while co l 50
+    while 2 e 2
         add co co 1
-        add tempa co 1
-        add tempb co 2
-        add li[tempb] li[tempa] li[co]
-    whileend
-    mov co -1
-    while co l 50
-        add co co 1
-        printf ss1 li[co]
-    whileend
+        inte main_si
+        inte main_si2
+        div main_si main_si2 co 1000000
+        if main_si2 e 0
+            string ss1 "%ld",10,0
+            printf ss1 co
+        ifend
+
+        inte main_r1
+        inte main_r2
+        inte main_r3
+        add  main_r1 w1 1
+        add  main_r2 w2 1
+        mul main_r3 main_r1 main_r2
+        sub main_r3 main_r3 1
+        inte main_r4
+        mul main_r4 curPosx curPosy
+        if main_r3 e listL
+            if main_r4 e 2
+                string ss2 "ok",32,"ok",10,0
+                printf ss2
+                inte main_loop 
+                mov main_loop 0
+                while main_loop l listL
+                    string ss4 "(%d,%d)",32,0
+                    printf ss4 posListx[main_loop] posListy[main_loop]
+                    add main_loop main_loop 1
+                whileend
+                string ss5 "(%d,%d)",10,0
+                printf ss5 curPosx curPosy
+                break
+            ifend
+        ifend
+        if tryTime e 9
+            if listL e 0
+                string ss3 "failed",10,0
+                printf ss3
+                break
+            ifend
+            sub main_r1  listL 1
+            mov curPosx posListx[main_r1]
+            mov curPosy posListy[main_r1]
+            mov tryTime tryTimeList[main_r1]
+            sub listL listL 1
+            add tryTime tryTime 1
+            continue
+        ifend
         
+        inte r
+        inte r2
+        inte b
+        inte a
+        mov getNextPos_a,curPosx
+        mov getNextPos_b,curPosy
+        mov getNextPos_n,tryTime
+        call getNextPos
+        mov r getNextPos_ret
+        mov a wR1
+        mov b wR2
+        mov foundPos_a a
+        mov foundPos_b b
+        call foundPos
+        mov r2 foundPos_ret
+        if r e -1
+            add tryTime tryTime 1
+            continue
+        ifend
+        if r2 e 1
+            add tryTime tryTime 1
+            continue
+        ifend
+
+        mov posListx[listL]  curPosx
+        mov posListy[listL]  curPosy
+        mov tryTimeList[listL] tryTime
+        add listL listL 1
+        mov curPosx a
+        mov curPosy b
+        mov tryTime 1
+    whileend
 defend

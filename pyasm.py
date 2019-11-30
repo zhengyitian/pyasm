@@ -101,6 +101,7 @@ def dealString(one):
     log.dAdd('db '+ol[2])
 
 def dealMov(one):
+    one = one.replace(',', ' ')
     ol = one.split()
     log.add('mov r9,'+log.getToken(ol[2]))
     log.add('mov %s,r9'%log.getToken(ol[1]))
